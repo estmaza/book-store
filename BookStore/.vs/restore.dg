@@ -1,0 +1,5 @@
+#:C:\Users\shmulskyi.vlad\Source\Repos\book-store-api\BookStore\src\BookStore.Api\BookStore.Api.xproj
+C:\Users\shmulskyi.vlad\Source\Repos\book-store-api\BookStore\src\BookStore.Api\BookStore.Api.xproj|C:\Users\shmulskyi.vlad\Source\Repos\book-store-api\BookStore\src\BookStore.BL\BookStore.BL.xproj
+C:\Users\shmulskyi.vlad\Source\Repos\book-store-api\BookStore\src\BookStore.Api\BookStore.Api.xproj|C:\Users\shmulskyi.vlad\Source\Repos\book-store-api\BookStore\src\BookStore.ViewModels\BookStore.ViewModels.xproj
+C:\Users\shmulskyi.vlad\Source\Repos\book-store-api\BookStore\src\BookStore.BL\BookStore.BL.xproj|C:\Users\shmulskyi.vlad\Source\Repos\book-store-api\BookStore\src\BookStore.Data\BookStore.Data.xproj
+C:\Users\shmulskyi.vlad\Source\Repos\book-store-api\BookStore\src\BookStore.BL\BookStore.BL.xproj|C:\Users\shmulskyi.vlad\Source\Repos\book-store-api\BookStore\src\BookStore.ViewModels\BookStore.ViewModels.xproj
