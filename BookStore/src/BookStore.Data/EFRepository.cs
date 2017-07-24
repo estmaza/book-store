@@ -35,7 +35,7 @@ namespace BookStore.Data
             return _context.Set<T>().Find(id);
         }
 
-        public void Remove(T item)
+        public void Delete(T item)
         {
             _context.Set<T>().Remove(item);
             _context.SaveChanges();

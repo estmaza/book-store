@@ -25,14 +25,24 @@ namespace BookStore.BL
             return _mapper.Map<AuthorViewModel>(_repository.Get(id));
         }
 
-        public void Remove(int id)
+        public void Delete(int id)
         {
-            _repository.Remove(_repository.Get(id));
+            if (id > 0)
+            {
+                _repository.Delete(_repository.Get(id));
+            }
         }
 
-        public void Save(AuthorViewModel book)
+        public void Create(AuthorViewModel model)
         {
-            throw new NotImplementedException();
+            var entity = _mapper.Map<Author>(model);
+            _repository.Create(entity);
+        }
+
+        public void Update(AuthorViewModel model)
+        {
+            var entity = _mapper.Map<Author>(model);
+            _repository.Update(entity);
         }
     }
 }

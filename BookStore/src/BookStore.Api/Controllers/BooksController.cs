@@ -34,20 +34,29 @@ namespace BookStore.Api.Controllers
 
         // POST api/books
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]BookViewModel model)
         {
+            if (ModelState.IsValid) 
+            {
+                _service.Create(model);
+            }
         }
 
         // PUT api/books/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]BookViewModel model)
         {
+            if (ModelState.IsValid) 
+            {
+                _service.Update(model);
+            }
         }
 
         // DELETE api/books/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _service.Delete(id);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace BookStore.Data
         T Get(int id);
         IEnumerable<T> Get();
         IEnumerable<T> Get(Func<T, bool> predicate);
-        void Remove(T item);
+        void Delete(T item);
         void Update(T item);
     }
 }

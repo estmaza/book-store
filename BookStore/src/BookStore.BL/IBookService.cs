@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.BL
 {
-    public interface IBookService
+    public interface IBookService : IEntityService<BookViewModel>
     {
-        IEnumerable<BookViewModel> Get();
-        BookViewModel Get(int id);
-        void Save(BookViewModel book);
-        void Remove(int id);
     }
 }

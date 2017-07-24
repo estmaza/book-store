@@ -25,14 +25,24 @@ namespace BookStore.BL
             return _mapper.Map<BookViewModel>(_repository.Get(id));
         }
 
-        public void Remove(int id)
+        public void Create(BookViewModel model)
         {
-            throw new NotImplementedException();
+            var entity = _mapper.Map<Book>(model);
+            _repository.Update(entity);
         }
 
-        public void Save(BookViewModel book)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            if (id > 0)
+            {
+                _repository.Delete(_repository.Get(id));
+            }
+        }
+
+        public void Update(BookViewModel model)
+        {
+            var entity = _mapper.Map<Book>(model);
+            _repository.Update(entity);
         }
     }
 }
