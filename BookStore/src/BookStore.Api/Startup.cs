@@ -59,6 +59,8 @@ namespace BookStore.Api
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200"));
+
             app.UseMvc();
 
             DbInitializer.Initialize(context);

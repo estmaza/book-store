@@ -1,0 +1,15 @@
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\bin\Debug\netcoreapp1.0\BookStore.Api.deps.json
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\bin\Debug\netcoreapp1.0\BookStore.Api.runtimeconfig.json
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\bin\Debug\netcoreapp1.0\BookStore.Api.runtimeconfig.dev.json
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\bin\Debug\netcoreapp1.0\BookStore.Api.dll
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\bin\Debug\netcoreapp1.0\BookStore.Api.pdb
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\bin\Debug\netcoreapp1.0\BookStore.BL.dll
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\bin\Debug\netcoreapp1.0\BookStore.Data.dll
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\bin\Debug\netcoreapp1.0\BookStore.ViewModels.dll
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\bin\Debug\netcoreapp1.0\BookStore.BL.pdb
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\bin\Debug\netcoreapp1.0\BookStore.ViewModels.pdb
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\bin\Debug\netcoreapp1.0\BookStore.Data.pdb
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\obj\Debug\netcoreapp1.0\BookStore.Api.csprojResolveAssemblyReference.cache
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\obj\Debug\netcoreapp1.0\BookStore.Api.AssemblyInfo.cs
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\obj\Debug\netcoreapp1.0\BookStore.Api.dll
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Api\obj\Debug\netcoreapp1.0\BookStore.Api.pdb

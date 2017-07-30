@@ -1,0 +1,7 @@
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Data\bin\Debug\netstandard1.6\BookStore.Data.deps.json
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Data\bin\Debug\netstandard1.6\BookStore.Data.dll
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Data\bin\Debug\netstandard1.6\BookStore.Data.pdb
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Data\obj\Debug\netstandard1.6\BookStore.Data.csprojResolveAssemblyReference.cache
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Data\obj\Debug\netstandard1.6\BookStore.Data.AssemblyInfo.cs
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Data\obj\Debug\netstandard1.6\BookStore.Data.dll
+C:\Users\vladm\book-store-api\BookStore\src\BookStore.Data\obj\Debug\netstandard1.6\BookStore.Data.pdb
