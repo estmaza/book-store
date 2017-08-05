@@ -16,9 +16,9 @@ namespace BookStore.BL.Infrastructure
         {
             CreateMap<Book, BookViewModel>();
             CreateMap<BookViewModel, Book>();
-            CreateMap<AuthorViewModel, Author>();
-            //CreateMap<AuthorViewModel, Author>().ForMember(d => d.BookAuthors, p => p.Ignore()); // May be usefull
-            CreateMap<Author, AuthorViewModel>();
+            //CreateMap<AuthorViewModel, Author>();
+            CreateMap<AuthorViewModel, Author>().ForMember(s => s.BookAuthors, p => p.MapFrom(src => src.Books)); // May be usefull
+            CreateMap<Author, AuthorViewModel>().ForMember(d => d.Books, s => s.MapFrom(src => src.BookAuthors.authorid);
         }
     }
 }

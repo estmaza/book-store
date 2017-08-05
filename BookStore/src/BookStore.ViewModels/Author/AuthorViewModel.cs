@@ -8,6 +8,11 @@ namespace BookStore.ViewModels
 {
     public class AuthorViewModel
     {
+        public AuthorViewModel()
+        {
+            Books = new List<int>();
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -21,6 +26,6 @@ namespace BookStore.ViewModels
         public string LastName { get; set; }
 
         [Display(Name = "Number of books")]
-        public int Count { get; set; }
+        public List<int> Books { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace BookStore.ViewModels
     {
         public BookViewModel()
         {
-            AuthorId = new List<int>();
+            Authors = new List<int>();
         }
 
         public int Id { get; set; }
@@ -30,6 +30,6 @@ namespace BookStore.ViewModels
         [Required]
         public int Pages { get; set; }
 
-        public List<int> AuthorId { get; set; }
+        public List<int> Authors { get; set; }
     }
 }

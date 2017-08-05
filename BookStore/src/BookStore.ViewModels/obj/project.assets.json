@@ -4497,19 +4497,22 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vladm\\.nuget\\packages\\": {}
+    "C:\\Users\\shmulskyi.vlad\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vladm\\book-store-api\\BookStore\\src\\BookStore.ViewModels\\BookStore.ViewModels.csproj",
+      "projectUniqueName": "C:\\Users\\shmulskyi.vlad\\Source\\Repos\\book-store-api\\BookStore\\src\\BookStore.ViewModels\\BookStore.ViewModels.csproj",
       "projectName": "BookStore.ViewModels",
-      "projectPath": "C:\\Users\\vladm\\book-store-api\\BookStore\\src\\BookStore.ViewModels\\BookStore.ViewModels.csproj",
-      "outputPath": "C:\\Users\\vladm\\book-store-api\\BookStore\\src\\BookStore.ViewModels\\obj\\",
+      "projectPath": "C:\\Users\\shmulskyi.vlad\\Source\\Repos\\book-store-api\\BookStore\\src\\BookStore.ViewModels\\BookStore.ViewModels.csproj",
+      "outputPath": "C:\\Users\\shmulskyi.vlad\\Source\\Repos\\book-store-api\\BookStore\\src\\BookStore.ViewModels\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netstandard1.6"
       ],
+      "files": {
+        "lib/netstandard1.6/BookStore.ViewModels.dll": "C:\\Users\\shmulskyi.vlad\\Source\\Repos\\book-store-api\\BookStore\\src\\BookStore.ViewModels\\bin\\placeholder\\netstandard1.6\\BookStore.ViewModels.dll"
+      },
       "frameworks": {
         "netstandard1.6": {
           "projectReferences": {}
@@ -4519,14 +4522,13 @@
     "frameworks": {
       "netstandard1.6": {
         "dependencies": {
+          "NETStandard.Library": {
+            "target": "Package",
+            "version": "1.6.1"
+          },
           "System.ComponentModel.Annotations": {
             "target": "Package",
             "version": "4.3.0"
-          },
-          "NETStandard.Library": {
-            "target": "Package",
-            "version": "1.6.1",
-            "autoReferenced": true
           }
         },
         "imports": [

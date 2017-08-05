@@ -1452,16 +1452,16 @@
   },
   "libraries": {
     "Microsoft.EntityFrameworkCore/1.1.2": {
-      "sha512": "X+IXortK5MogDCFrVHSj2pwFfZev37e+1QMS/ohSjZf/oLpTUGi5x4/NVopRi/w9R5f3HHGJ+RyL8eA1JuqJnQ==",
+      "sha512": "2oY1cQ3DEhpbRjlDBE1zb7IngKyPC4fslAX5WL1mnVQOLX/8BPOAjgYM2inzNK2z8ld/DxBUZEwc3xfNc8qhbw==",
       "type": "package",
       "path": "microsoft.entityframeworkcore/1.1.2",
       "files": [
+        "Microsoft.EntityFrameworkCore.1.1.2.nupkg.sha512",
+        "Microsoft.EntityFrameworkCore.nuspec",
         "lib/net451/Microsoft.EntityFrameworkCore.dll",
         "lib/net451/Microsoft.EntityFrameworkCore.xml",
         "lib/netstandard1.3/Microsoft.EntityFrameworkCore.dll",
-        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.xml",
-        "microsoft.entityframeworkcore.1.1.2.nupkg.sha512",
-        "microsoft.entityframeworkcore.nuspec"
+        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.xml"
       ]
     },
     "Microsoft.Extensions.Caching.Abstractions/1.1.1": {
@@ -4936,19 +4936,22 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vladm\\.nuget\\packages\\": {}
+    "C:\\Users\\shmulskyi.vlad\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vladm\\book-store-api\\BookStore\\src\\BookStore.Data\\BookStore.Data.csproj",
+      "projectUniqueName": "C:\\Users\\shmulskyi.vlad\\Source\\Repos\\book-store-api\\BookStore\\src\\BookStore.Data\\BookStore.Data.csproj",
       "projectName": "BookStore.Data",
-      "projectPath": "C:\\Users\\vladm\\book-store-api\\BookStore\\src\\BookStore.Data\\BookStore.Data.csproj",
-      "outputPath": "C:\\Users\\vladm\\book-store-api\\BookStore\\src\\BookStore.Data\\obj\\",
+      "projectPath": "C:\\Users\\shmulskyi.vlad\\Source\\Repos\\book-store-api\\BookStore\\src\\BookStore.Data\\BookStore.Data.csproj",
+      "outputPath": "C:\\Users\\shmulskyi.vlad\\Source\\Repos\\book-store-api\\BookStore\\src\\BookStore.Data\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netstandard1.6"
       ],
+      "files": {
+        "lib/netstandard1.6/BookStore.Data.dll": "C:\\Users\\shmulskyi.vlad\\Source\\Repos\\book-store-api\\BookStore\\src\\BookStore.Data\\bin\\placeholder\\netstandard1.6\\BookStore.Data.dll"
+      },
       "frameworks": {
         "netstandard1.6": {
           "projectReferences": {}
@@ -4958,14 +4961,13 @@
     "frameworks": {
       "netstandard1.6": {
         "dependencies": {
+          "NETStandard.Library": {
+            "target": "Package",
+            "version": "1.6.1"
+          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "1.1.2"
-          },
-          "NETStandard.Library": {
-            "target": "Package",
-            "version": "1.6.1",
-            "autoReferenced": true
           }
         },
         "imports": [
