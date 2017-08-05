@@ -10,6 +10,8 @@ namespace BookStore.Data
     {
         void Create(T item);
         T Get(int id);
+        T Get(int id, params string[] navigationProperties);
+        // TODO 
         IEnumerable<T> Get();
         IEnumerable<T> Get(Func<T, bool> predicate);
         IEnumerable<T> Get(params string[] navigationProperties);

@@ -14,11 +14,10 @@ namespace BookStore.BL.Infrastructure
 
         protected AutoMapperProfileConfiguration(string profileName) : base(profileName)
         {
-            CreateMap<Book, BookViewModel>();
-            CreateMap<BookViewModel, Book>();
-            //CreateMap<AuthorViewModel, Author>();
-            CreateMap<AuthorViewModel, Author>().ForMember(s => s.BookAuthors, p => p.MapFrom(src => src.Books)); // May be usefull
-            CreateMap<Author, AuthorViewModel>().ForMember(d => d.Books, s => s.MapFrom(src => src.BookAuthors.authorid);
+            CreateMap<Book, BookViewModel>().ForMember(s => s.Authors, p => p.MapFrom(src => src.BookAuthors.Select(c => c.AuthorId)));
+            CreateMap<BookViewModel, Book>().ForMember(s => s.BookAuthors, p => p.MapFrom(src => src.Authors.Select(c => new BookAuthor { BookId = src.Id, AuthorId = c })));
+            CreateMap<Author, AuthorViewModel>().ForMember(s => s.Books, p => p.MapFrom(src => src.BookAuthors.Select(c => c.BookId)));
+            CreateMap<AuthorViewModel, Author>().ForMember(s => s.BookAuthors, p => p.MapFrom(src => src.Books.Select(c => new BookAuthor { AuthorId = src.Id, BookId = c })));
         }
     }
 }

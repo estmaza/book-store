@@ -17,12 +17,12 @@ namespace BookStore.BL
 
         public IEnumerable<BookViewModel> Get()
         {
-            return _repository.Get().Select(p => _mapper.Map<BookViewModel>(p)).ToList();
+            return _repository.Get("BookAuthors").Select(p => _mapper.Map<BookViewModel>(p)).ToList();
         }
 
         public BookViewModel Get(int id)
         {
-            return _mapper.Map<BookViewModel>(_repository.Get(id));
+            return _mapper.Map<BookViewModel>(_repository.Get(id, "BookAuthors"));
         }
 
         public void Create(BookViewModel model)

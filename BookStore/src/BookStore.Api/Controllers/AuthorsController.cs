@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookStore.BL;
 using BookStore.ViewModels;
-using Newtonsoft;
 
 namespace BookStore.Api.Controllers
 {
@@ -21,16 +20,16 @@ namespace BookStore.Api.Controllers
 
         // GET: api/authors
         [HttpGet]
-        public IEnumerable<AuthorViewModel> Get()
+        public JsonResult Get()
         {
-            return _service.Get();
+            return JsonData(true, _service.Get());
         }
 
         // GET api/authors/5
         [HttpGet("{id}")]
-        public AuthorViewModel Get(int id)
+        public JsonResult Get(int id)
         {
-            return _service.Get(id);
+            return JsonData(true, _service.Get(id));
         }
 
         // POST api/authors

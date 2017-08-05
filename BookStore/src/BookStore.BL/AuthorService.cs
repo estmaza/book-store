@@ -17,13 +17,12 @@ namespace BookStore.BL
 
         public IEnumerable<AuthorViewModel> Get()
         {
-            //return _repository.Get().Select(p => _mapper.Map<AuthorViewModel>(p)).ToList();
             return _repository.Get("BookAuthors").Select(p => _mapper.Map<AuthorViewModel>(p)).ToList();
         }
 
         public AuthorViewModel Get(int id)
         {
-            return _mapper.Map<AuthorViewModel>(_repository.Get(id));
+            return _mapper.Map<AuthorViewModel>(_repository.Get(id, "BookAuthors"));
         }
 
         public void Delete(int id)

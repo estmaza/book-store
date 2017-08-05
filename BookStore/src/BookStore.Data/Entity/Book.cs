@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace BookStore.Data.Entity
 {
-    public class Book
+    public class Book : EntityBase
     {
         public Book()
         {
             BookAuthors = new List<BookAuthor>();
         }
-
-        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]

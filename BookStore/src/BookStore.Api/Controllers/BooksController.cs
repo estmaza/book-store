@@ -20,16 +20,16 @@ namespace BookStore.Api.Controllers
 
         // GET: api/books
         [HttpGet]
-        public IEnumerable<BookViewModel> Get()
+        public JsonResult Get()
         {
-            return _service.Get();
+            return JsonData(true, _service.Get());
         }
 
         // GET api/books/5
         [HttpGet("{id}")]
-        public BookViewModel Get(int id)
+        public JsonResult Get(int id)
         {
-            return _service.Get(id);
+            return JsonData(true, _service.Get(id));
         }
 
         // POST api/books
