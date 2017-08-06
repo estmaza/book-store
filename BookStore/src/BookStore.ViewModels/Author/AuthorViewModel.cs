@@ -25,6 +25,9 @@ namespace BookStore.ViewModels
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [StringLength(512)]
+        public string Biography { get; set; }
+
         [Display(Name = "Number of books")]
         public List<int> Books { get; set; }
     }

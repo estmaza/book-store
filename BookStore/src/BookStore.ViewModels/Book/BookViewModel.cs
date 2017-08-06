@@ -30,6 +30,9 @@ namespace BookStore.ViewModels
         [Required]
         public int Pages { get; set; }
 
+        [StringLength(512)]
+        public string Annotation { get; set; }
+
         public List<int> Authors { get; set; }
     }
 }

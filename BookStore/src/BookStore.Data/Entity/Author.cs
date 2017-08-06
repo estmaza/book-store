@@ -21,6 +21,9 @@ namespace BookStore.Data.Entity
         [StringLength(50)]
         public string LastName { get; set; }
 
+        [StringLength(512)]
+        public string Biography { get; set; }
+
         public List<BookAuthor> BookAuthors { get; set; }
     }
 }
