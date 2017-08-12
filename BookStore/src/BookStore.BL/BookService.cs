@@ -28,7 +28,7 @@ namespace BookStore.BL
         public void Create(BookViewModel model)
         {
             var entity = _mapper.Map<Book>(model);
-            _repository.Update(entity);
+            _repository.Create(entity);
         }
 
         public void Delete(int id)

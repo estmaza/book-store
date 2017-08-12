@@ -20,6 +20,7 @@ namespace BookStore.Data
         public void Create(T item)
         {
             _context.Set<T>().Add(item);
+            _context.SaveChanges();
         }
 
         public IEnumerable<T> Get()

@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "${workspaceRoot}/BookStore/src/BookStore.Api/project.json"
+                "${workspaceRoot}/BookStore/src/BookStore.Api/BookStore.Api.csproj"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
