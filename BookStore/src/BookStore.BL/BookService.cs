@@ -25,10 +25,10 @@ namespace BookStore.BL
             return _mapper.Map<BookViewModel>(_repository.Get(id, "BookAuthors"));
         }
 
-        public void Create(BookViewModel model)
+        public int Create(BookViewModel model)
         {
             var entity = _mapper.Map<Book>(model);
-            _repository.Create(entity);
+            return _repository.Create(entity);
         }
 
         public void Delete(int id)

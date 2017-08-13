@@ -8,7 +8,7 @@ namespace BookStore.Data
 {
     public interface IRepository<T> where T: class
     {
-        void Create(T item);
+        int Create(T item);
         T Get(int id);
         T Get(int id, params string[] navigationProperties);
         // TODO 

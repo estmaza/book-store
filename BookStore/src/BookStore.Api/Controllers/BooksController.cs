@@ -34,12 +34,14 @@ namespace BookStore.Api.Controllers
 
         // POST api/books
         [HttpPost]
-        public void Post([FromBody]BookViewModel model)
+        public JsonResult Post([FromBody]BookViewModel model)
         {
             if (ModelState.IsValid) 
             {
-                _service.Create(model);
+                var id = _service.Create(model);
+                return JsonData(true, new { Id = id });
             }
+            return JsonData(false, model, "Invalid model state.");
         }
 
         // PUT api/books/5

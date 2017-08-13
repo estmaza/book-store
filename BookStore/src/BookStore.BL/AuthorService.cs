@@ -33,10 +33,10 @@ namespace BookStore.BL
             }
         }
 
-        public void Create(AuthorViewModel model)
+        public int Create(AuthorViewModel model)
         {
             var entity = _mapper.Map<Author>(model);
-            _repository.Create(entity);
+            return _repository.Create(entity);
         }
 
         public void Update(AuthorViewModel model)

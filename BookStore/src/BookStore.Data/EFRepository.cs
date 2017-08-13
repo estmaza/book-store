@@ -17,10 +17,11 @@ namespace BookStore.Data
             _context = context;
         }
 
-        public void Create(T item)
+        public int Create(T item)
         {
             _context.Set<T>().Add(item);
             _context.SaveChanges();
+            return item.Id;
         }
 
         public IEnumerable<T> Get()
