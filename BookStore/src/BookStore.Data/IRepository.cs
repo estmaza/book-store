@@ -8,7 +8,7 @@ namespace BookStore.Data
 {
     public interface IRepository<T> where T: class
     {
-        int Create(T item);
+        T Create(T item);
         T Get(int id);
         T Get(int id, params string[] navigationProperties);
         // TODO 
@@ -16,7 +16,7 @@ namespace BookStore.Data
         IEnumerable<T> Get(Func<T, bool> predicate);
         IEnumerable<T> Get(params string[] navigationProperties);
         IEnumerable<T> Get(Expression<Func<T, bool>> predicate, params string[] navigationProperties);
-        void Delete(T item);
-        void Update(T item);
+        bool Delete(T item);
+        bool Update(T item);
     }
 }

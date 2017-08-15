@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http.Extensions;
 using BookStore.BL;
 using BookStore.ViewModels;
 
@@ -20,45 +21,57 @@ namespace BookStore.Api.Controllers
 
         // GET: api/authors
         [HttpGet]
-        public JsonResult Get()
+        public IActionResult Get()
         {
-            return JsonData(true, _service.Get());
+            var model = _service.Get();
+            return Ok(model);
         }
 
         // GET api/authors/5
         [HttpGet("{id}")]
-        public JsonResult Get(int id)
+        public IActionResult Get(int id)
         {
-            return JsonData(true, _service.Get(id));
+            var model = _service.Get(id);
+            if (model != null)
+                return Ok(model);
+            return NotFound();
         }
 
         // POST api/authors
         [HttpPost]
-        public JsonResult Post([FromBody]AuthorViewModel model)
+        public IActionResult Post([FromBody]AuthorViewModel model)
         {
             if (ModelState.IsValid) 
             {
-                var id = _service.Create(model);
-                return JsonData(true, new { Id = id });
+                var result = _service.Create(model);
+                
+                return Created($"{Request.GetDisplayUrl()}/{result.Id}", result);
             }
-            return JsonData(false, model, "Invalid model state.");
+            return BadRequest(model);
         }
 
         // PUT api/authors/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]AuthorViewModel model)
+        public IActionResult Put(int id, [FromBody]AuthorViewModel model)
         {
             if (ModelState.IsValid) 
             {
-                _service.Update(model);
+                var result = _service.Update(model);
+                if (result)
+                    return NoContent();
+                return NotFound();
             }
+            return BadRequest(model);
         }
 
         // DELETE api/authors/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            _service.Delete(id);
+            var result = _service.Delete(id);
+            if (result)
+                return NoContent();
+            return NotFound();
         }
     }
 }

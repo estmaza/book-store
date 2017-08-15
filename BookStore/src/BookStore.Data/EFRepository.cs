@@ -17,11 +17,11 @@ namespace BookStore.Data
             _context = context;
         }
 
-        public int Create(T item)
+        public T Create(T item)
         {
-            _context.Set<T>().Add(item);
+            var result = _context.Set<T>().Add(item);
             _context.SaveChanges();
-            return item.Id;
+            return result.Entity;
         }
 
         public IEnumerable<T> Get()
@@ -73,16 +73,22 @@ namespace BookStore.Data
             return query.FirstOrDefault(p => p.Id == id);
         }
 
-        public void Delete(T item)
+        public bool Delete(T item)
         {
-            _context.Set<T>().Remove(item);
+            var result = _context.Set<T>().Remove(item);
             _context.SaveChanges();
+            return result.State == EntityState.Deleted;
         }
 
-        public void Update(T item)
+        public bool Update(T item)
         {
-            _context.Set<T>().Update(item);
-            _context.SaveChanges();
+            if (_context.Set<T>().Any(p => p.Id == item.Id))
+            {
+                _context.Set<T>().Update(item);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

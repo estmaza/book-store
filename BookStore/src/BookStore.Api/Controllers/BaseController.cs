@@ -11,16 +11,6 @@ namespace BookStore.Api.Controllers
     [Route("api/[controller]")]
     public class BaseController : Controller
     {
-        protected JsonResult JsonData(bool isSuccess, object data, string message = null)
-        {
-            var result = Json(new
-            {
-                IsSuccess = isSuccess,
-                Message = message,
-                Data = data
-            });
 
-            return result;
-        }
     }
 }

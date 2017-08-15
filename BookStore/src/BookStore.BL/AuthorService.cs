@@ -17,32 +17,37 @@ namespace BookStore.BL
 
         public IEnumerable<AuthorViewModel> Get()
         {
-            return _repository.Get("BookAuthors").Select(p => _mapper.Map<AuthorViewModel>(p)).ToList();
+            var model = _repository.Get("BookAuthors")
+                .Select(p => _mapper.Map<AuthorViewModel>(p))
+                .ToList();
+            return model;
         }
 
         public AuthorViewModel Get(int id)
         {
-            return _mapper.Map<AuthorViewModel>(_repository.Get(id, "BookAuthors"));
+            var model = _repository.Get(id, "BookAuthors");
+            return _mapper.Map<AuthorViewModel>(model);
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            if (id > 0)
-            {
-                _repository.Delete(_repository.Get(id));
-            }
+            var model = _repository.Get(id);
+            if (model != null)
+                return _repository.Delete(model);
+            return false;
         }
 
-        public int Create(AuthorViewModel model)
-        {
-            var entity = _mapper.Map<Author>(model);
-            return _repository.Create(entity);
-        }
-
-        public void Update(AuthorViewModel model)
+        public AuthorViewModel Create(AuthorViewModel model)
         {
             var entity = _mapper.Map<Author>(model);
-            _repository.Update(entity);
+            var saved = _repository.Create(entity);
+            return _mapper.Map<AuthorViewModel>(saved);
+        }
+
+        public bool Update(AuthorViewModel model)
+        {
+            var entity = _mapper.Map<Author>(model);
+            return _repository.Update(entity);
         }
     }
 }

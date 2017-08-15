@@ -10,8 +10,8 @@ namespace BookStore.BL
     {
         IEnumerable<T> Get();
         T Get(int id);
-        int Create(T model);
-        void Update(T model);
-        void Delete(int id);
+        T Create(T model);
+        bool Update(T model);
+        bool Delete(int id);
     }
 }
