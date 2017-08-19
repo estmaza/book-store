@@ -37,6 +37,16 @@ namespace BookStore.Api.Controllers
             return NotFound();
         }
 
+        // GET api/authors/options
+        [HttpGet("options")]
+        public IActionResult Options()
+        {
+            var model = _service.Options();
+            if (model != null)
+                return Ok(model);
+            return NotFound();
+        }
+
         // POST api/authors
         [HttpPost]
         public IActionResult Post([FromBody]AuthorViewModel model)

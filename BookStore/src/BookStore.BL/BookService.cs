@@ -49,5 +49,11 @@ namespace BookStore.BL
             var entity = _mapper.Map<Book>(model);
             return _repository.Update(entity);
         }
+
+        public Dictionary<int, string> Options()
+        {
+            var model = _repository.Get().ToDictionary(k => k.Id, v => v.Name);
+            return model;
+        }
     }
 }

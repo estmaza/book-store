@@ -11,7 +11,7 @@ namespace BookStore.BL
 {
     public class AuthorService : BusinessBase<Author>, IAuthorService
     {
-        public AuthorService(IRepository<Author> repository, IMapper mapper) : base(repository, mapper)
+    public AuthorService(IRepository<Author> repository, IMapper mapper) : base(repository, mapper)
         {
         }
 
@@ -48,6 +48,12 @@ namespace BookStore.BL
         {
             var entity = _mapper.Map<Author>(model);
             return _repository.Update(entity);
+        }
+
+        public Dictionary<int, string> Options()
+        {
+            var model = _repository.Get().ToDictionary(k => k.Id, v => $"{v.FirstName} {v.LastName}");
+            return model;
         }
     }
 }
