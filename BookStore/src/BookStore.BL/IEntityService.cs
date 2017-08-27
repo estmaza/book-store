@@ -13,6 +13,6 @@ namespace BookStore.BL
         T Create(T model);
         bool Update(T model);
         bool Delete(int id);
-        Dictionary<int, string> Options();
+        IEnumerable<SelectOption> Options();
     }
 }

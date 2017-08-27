@@ -43,6 +43,7 @@ namespace BookStore.Api.Controllers
         {
             var model = _service.Options();
             if (model != null)
+                //return Ok(new { Options = model });
                 return Ok(model);
             return NotFound();
         }

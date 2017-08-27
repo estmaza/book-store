@@ -50,9 +50,9 @@ namespace BookStore.BL
             return _repository.Update(entity);
         }
 
-        public Dictionary<int, string> Options()
+        public IEnumerable<SelectOption> Options()
         {
-            var model = _repository.Get().ToDictionary(k => k.Id, v => $"{v.FirstName} {v.LastName}");
+            var model = _repository.Get().Select(p => new SelectOption { Value = p.Id, Text = $"{p.FirstName} {p.LastName}" });
             return model;
         }
     }
