@@ -52,7 +52,7 @@ namespace BookStore.BL
 
         public IEnumerable<SelectOption> Options()
         {
-            var model = _repository.Get().Select(p => new SelectOption { Value = p.Id, Text = p.Name });
+            var model = _repository.Get().Select(p => new SelectOption { Id = p.Id, Name = p.Name });
             return model;
         }
     }
