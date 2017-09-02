@@ -48,7 +48,6 @@ namespace BookStore.Api
 
             services.AddCors();
 
-            services.AddTransient(typeof(IRepository<>), typeof(EFRepository<>));
             services.AddTransient<IAuthorService, AuthorService>();
             services.AddTransient<IBookService, BookService>();
         }

@@ -9,12 +9,12 @@ namespace BookStore.BL
 {
     public abstract class BusinessBase<T> where T : class
     {
-        protected readonly IRepository<T> _repository;
+        protected readonly ApplicationContext _context;
         protected readonly IMapper _mapper;
 
-        public BusinessBase(IRepository<T> repository, IMapper mapper)
+        public BusinessBase(ApplicationContext context, IMapper mapper)
         {
-            _repository = repository;
+            _context = context;
             _mapper = mapper;
         }
     }
