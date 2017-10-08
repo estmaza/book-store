@@ -32,6 +32,8 @@ namespace BookStore.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCompression();
+
             var mapperConfig = new MapperConfiguration(config =>
             {
                 config.AddProfile(new AutoMapperProfileConfiguration());
@@ -57,6 +59,8 @@ namespace BookStore.Api
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseResponseCompression();
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
