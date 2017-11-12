@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using BookStore.BL;
+using BookStore.BL.Infrastructure;
+using BookStore.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using BookStore.Data;
-using Microsoft.EntityFrameworkCore;
-using BookStore.BL;
-using AutoMapper;
-using BookStore.BL.Infrastructure;
 
 namespace BookStore.Api
 {
@@ -46,8 +42,7 @@ namespace BookStore.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Add framework services.
-            services.AddMvc();
-
+            services.AddMvcCore().AddJsonFormatters();
             services.AddCors();
 
             services.AddTransient<IAuthorService, AuthorService>();

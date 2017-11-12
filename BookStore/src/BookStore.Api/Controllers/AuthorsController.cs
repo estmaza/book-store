@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http.Extensions;
-using BookStore.BL;
+﻿using BookStore.BL;
 using BookStore.ViewModels;
+using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace BookStore.Api.Controllers
 {
     [Route("api/authors")]
-    public class AuthorsController : BaseController
+    public class AuthorsController : ControllerBase
     {
-        protected readonly IAuthorService _service;
+        private readonly IAuthorService _service;
 
         public AuthorsController(IAuthorService service)
         {
@@ -21,20 +18,14 @@ namespace BookStore.Api.Controllers
 
         // GET: api/authors
         [HttpGet]
-        public IActionResult Get()
-        {
-            var model = _service.Get();
-            return Ok(model);
-        }
+        public IActionResult Get() => Ok(_service.Get());
 
         // GET api/authors/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var model = _service.Get(id);
-            if (model != null)
-                return Ok(model);
-            return NotFound();
+            return model != null ? Ok(model) as IActionResult : NotFound();
         }
 
         // GET api/authors/options
@@ -42,47 +33,31 @@ namespace BookStore.Api.Controllers
         public IActionResult Options()
         {
             var model = _service.Options();
-            if (model != null)
-                //return Ok(new { Options = model });
-                return Ok(model);
-            return NotFound();
+            return model.Any() ? Ok(model) as IActionResult : NotFound();
         }
 
         // POST api/authors
         [HttpPost]
         public IActionResult Post([FromBody]AuthorViewModel model)
         {
-            if (ModelState.IsValid) 
-            {
-                var result = _service.Create(model);
-                
-                return Created($"{Request.GetDisplayUrl()}/{result.Id}", result);
-            }
-            return BadRequest(model);
+            if (!ModelState.IsValid) return BadRequest(model);
+            
+            var result = _service.Create(model);    
+            return Created($"{Request.GetDisplayUrl()}/{result.Id}", result);
         }
 
         // PUT api/authors/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]AuthorViewModel model)
         {
-            if (ModelState.IsValid) 
-            {
-                var result = _service.Update(model);
-                if (result)
-                    return NoContent();
-                return NotFound();
-            }
-            return BadRequest(model);
+            if (!ModelState.IsValid) return BadRequest(model);
+            
+            var result = _service.Update(model);
+            return result ? NoContent() as IActionResult : NotFound();
         }
 
         // DELETE api/authors/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var result = _service.Delete(id);
-            if (result)
-                return NoContent();
-            return NotFound();
-        }
+        public IActionResult Delete(int id) => _service.Delete(id) ? NoContent() as IActionResult : NotFound();
     }
 }

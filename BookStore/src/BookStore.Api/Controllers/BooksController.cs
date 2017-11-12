@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http.Extensions;
-using BookStore.BL;
+﻿using BookStore.BL;
 using BookStore.ViewModels;
+using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Api.Controllers
 {
     [Route("api/books")]
-    public class BooksController : BaseController
+    public class BooksController : ControllerBase
     {
         protected readonly IBookService _service;
 

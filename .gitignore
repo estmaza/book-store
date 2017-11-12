@@ -245,3 +245,21 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+BookStore/.idea/.idea.BookStore/riderModule.iml
+BookStore/.idea/.idea.BookStore/.idea/contentModel.xml
+BookStore/.idea/.idea.BookStore/.idea/indexLayout.xml
+BookStore/.idea/.idea.BookStore/.idea/modules.xml
+BookStore/.idea/.idea.BookStore/.idea/vcs.xml
+BookStore/.idea/.idea.BookStore/.idea/workspace.xml
+BookStore/src/BookStore.Api/obj/BookStore.Api.csproj.nuget.g.props
+BookStore/src/BookStore.Api/obj/BookStore.Api.csproj.nuget.g.targets
+BookStore/src/BookStore.Api/obj/project.assets.json
+BookStore/src/BookStore.BL/obj/BookStore.BL.csproj.nuget.g.props
+BookStore/src/BookStore.BL/obj/BookStore.BL.csproj.nuget.g.targets
+BookStore/src/BookStore.BL/obj/project.assets.json
+BookStore/src/BookStore.Data/obj/BookStore.Data.csproj.nuget.g.props
+BookStore/src/BookStore.Data/obj/BookStore.Data.csproj.nuget.g.targets
+BookStore/src/BookStore.Data/obj/project.assets.json
+BookStore/src/BookStore.ViewModels/obj/BookStore.ViewModels.csproj.nuget.g.props
+BookStore/src/BookStore.ViewModels/obj/BookStore.ViewModels.csproj.nuget.g.targets
+BookStore/src/BookStore.ViewModels/obj/project.assets.json
