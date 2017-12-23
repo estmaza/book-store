@@ -16,86 +16,80 @@ namespace BookStore.BL
         {
         }
 
-        public IEnumerable<BookViewModel> Get()
+        public async Task<IEnumerable<BookViewModel>> Get()
         {
-            var model = _context.Set<Book>()
+            var model = await _context.Set<Book>()
                 .Include(p => p.BookAuthors)
                 .Select(p => _mapper.Map<BookViewModel>(p))
-                .ToList();
-            
+                .ToListAsync();
+
             return model;
         }
 
-        public BookViewModel Get(int id)
+        public async Task<BookViewModel> Get(int id)
         {
-            var model = _context.Set<Book>()
+            var model = await _context.Set<Book>()
                 .Include(p => p.BookAuthors)
-                .FirstOrDefault(p => p.Id == id);
-            
+                .FirstOrDefaultAsync(p => p.Id == id);
+
             return _mapper.Map<BookViewModel>(model);
         }
 
-        public BookViewModel Create(BookViewModel model)
+        public async Task<BookViewModel> Create(BookViewModel model)
         {
             var entity = _mapper.Map<Book>(model);
 
-            _context.Set<Book>().Add(entity);
-            _context.SaveChanges();
-            
+            await _context.Set<Book>().AddAsync(entity);
+            await _context.SaveChangesAsync();
+
             return _mapper.Map<BookViewModel>(entity);
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             var entity = _context.Set<Book>().FirstOrDefault(p => p.Id == id);
 
-            if (entity != null) 
-            {
-                _context.Set<Book>().Remove(entity);
-                _context.SaveChanges();
-                
-                return true;
-            }
-            return false;
+            if (entity == null)
+                return false;
+
+            _context.Set<Book>().Remove(entity);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
-        public bool Update(BookViewModel model)
+        public async Task<bool> Update(BookViewModel model)
         {
             var entity = _context.Set<Book>()
                 .Include(p => p.BookAuthors)
                 .FirstOrDefault(p => p.Id == model.Id);
 
-            if (entity != null)
+            if (entity == null)
+                return false;
+
+            _context.Entry(entity).CurrentValues.SetValues(model);
+
+            // delete children
+            foreach (var ba in entity.BookAuthors)
             {
-                _context.Entry(entity).CurrentValues.SetValues(model);
-
-                // delete children
-                foreach (var ba in entity.BookAuthors)
-                {
-                    if (!model.Authors.Contains(ba.BookId))
-                        _context.Set<BookAuthor>().Remove(ba);
-                }
-
-                // add children (no need to update entries in join-table)
-                var existedAuthors = entity.BookAuthors.Select(p => p.AuthorId).ToList();
-                var newAuthors = model.Authors.Except(existedAuthors);
-                
-                foreach (var authorId in newAuthors)
-                {
-                    _context.Set<BookAuthor>().Add(new BookAuthor { AuthorId = authorId, BookId = entity.Id });
-                }
-
-                _context.SaveChanges();
-
-                return true;
+                if (!model.Authors.Contains(ba.BookId))
+                    _context.Set<BookAuthor>().Remove(ba);
             }
 
-            return false;
+            // add children (no need to update entries in join-table)
+            var existedAuthors = entity.BookAuthors.Select(p => p.AuthorId).ToList();
+            var bookAuthors = model.Authors.Except(existedAuthors)
+                .Select(authorId => new BookAuthor { AuthorId = authorId, BookId = entity.Id });
+
+            await _context.Set<BookAuthor>().AddRangeAsync(bookAuthors);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
-        public IEnumerable<SelectOption> Options()
+        public async Task<IEnumerable<SelectOption>> Options()
         {
-            var model = _context.Set<Book>().Select(p => new SelectOption { Id = p.Id, Name = p.Name });
+            var model = await _context.Set<Book>().Select(p => new SelectOption { Id = p.Id, Name = p.Name }).ToListAsync();
             return model;
         }
     }

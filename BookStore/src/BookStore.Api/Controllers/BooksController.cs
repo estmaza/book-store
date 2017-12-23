@@ -1,4 +1,5 @@
-﻿using BookStore.BL;
+﻿using System.Threading.Tasks;
+using BookStore.BL;
 using BookStore.ViewModels;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -17,17 +18,17 @@ namespace BookStore.Api.Controllers
 
         // GET: api/books
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var model = _service.Get();
+            var model = await _service.Get();
             return Ok(model);
         }
 
         // GET api/books/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var model = _service.Get(id);
+            var model = await _service.Get(id);
             if (model != null)
                 return Ok(model);
             return NotFound();
@@ -35,22 +36,21 @@ namespace BookStore.Api.Controllers
 
         // GET api/books/options
         [HttpGet("options")]
-        public IActionResult Options()
+        public async Task<IActionResult> Options()
         {
-            var model = _service.Options();
+            var model = await _service.Options();
             if (model != null)
-                //return Ok(new { Options = model });
                 return Ok(model);
             return NotFound();
         }
 
         // POST api/books
         [HttpPost]
-        public IActionResult Post([FromBody]BookViewModel model)
+        public async Task<IActionResult> Post([FromBody]BookViewModel model)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
-                var result = _service.Create(model);
+                var result = await _service.Create(model);
                 return Created($"{Request.GetDisplayUrl()}/{result.Id}", result);
             }
             return BadRequest(model);
@@ -58,11 +58,11 @@ namespace BookStore.Api.Controllers
 
         // PUT api/books/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]BookViewModel model)
+        public async Task<IActionResult> Put(int id, [FromBody]BookViewModel model)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
-                var result = _service.Update(model);
+                var result = await _service.Update(model);
                 if (result)
                     return NoContent();
                 return NotFound();
@@ -72,9 +72,9 @@ namespace BookStore.Api.Controllers
 
         // DELETE api/books/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _service.Delete(id);
+            var result = await _service.Delete(id);
             if (result)
                 return NoContent();
             return NotFound();

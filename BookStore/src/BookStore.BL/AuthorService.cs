@@ -5,95 +5,93 @@ using BookStore.Data;
 using BookStore.ViewModels;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace BookStore.BL
 {
-  public class AuthorService : BusinessBase<Author>, IAuthorService
+    public class AuthorService : BusinessBase<Author>, IAuthorService
     {
         public AuthorService(ApplicationContext context, IMapper mapper) : base(context, mapper)
         {
         }
 
-        public IEnumerable<AuthorViewModel> Get()
+        public async Task<IEnumerable<AuthorViewModel>> Get()
         {
-            var model = _context.Set<Author>()
+            var model = await _context.Set<Author>()
                 .Include(p => p.BookAuthors)
                 .Select(p => _mapper.Map<AuthorViewModel>(p))
-                .ToList();
-            
+                .ToListAsync();
+
             return model;
         }
 
-        public AuthorViewModel Get(int id)
+        public async Task<AuthorViewModel> Get(int id)
         {
-            var model = _context.Set<Author>()
+            var model = await _context.Set<Author>()
                 .Include(p => p.BookAuthors)
-                .FirstOrDefault(p => p.Id == id);
-            
+                .FirstOrDefaultAsync(p => p.Id == id);
+
             return _mapper.Map<AuthorViewModel>(model);
         }
 
-        public AuthorViewModel Create(AuthorViewModel model)
+        public async Task<AuthorViewModel> Create(AuthorViewModel model)
         {
             var entity = _mapper.Map<Author>(model);
 
-            _context.Set<Author>().Add(entity);
-            _context.SaveChanges();
-            
+            await _context.Set<Author>().AddAsync(entity);
+            await _context.SaveChangesAsync();
+
             return _mapper.Map<AuthorViewModel>(entity);
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            var entity = _context.Set<Author>().FirstOrDefault(p => p.Id == id);
+            var entity = await _context.Set<Author>().FirstOrDefaultAsync(p => p.Id == id);
 
-            if (entity != null) 
-            {
-                _context.Set<Author>().Remove(entity);
-                _context.SaveChanges();
-                
-                return true;
-            }
-            return false;
+            if (entity == null)
+                return false;
+
+            _context.Set<Author>().Remove(entity);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
-        public bool Update(AuthorViewModel model)
+        public async Task<bool> Update(AuthorViewModel model)
         {
-            var entity = _context.Set<Author>()
+            var entity = await _context.Set<Author>()
                 .Include(p => p.BookAuthors)
-                .FirstOrDefault(p => p.Id == model.Id);
+                .FirstOrDefaultAsync(p => p.Id == model.Id);
 
-            if (entity != null)
+            if (entity == null)
+                return false;
+
+            _context.Entry(entity).CurrentValues.SetValues(model);
+
+            // delete children
+            foreach (var ba in entity.BookAuthors)
             {
-                _context.Entry(entity).CurrentValues.SetValues(model);
-
-                // delete children
-                foreach (var ba in entity.BookAuthors)
-                {
-                    if (!model.Books.Contains(ba.BookId))
-                        _context.Set<BookAuthor>().Remove(ba);
-                }
-
-                // add children (no need to update entries in join-table)
-                var existedBooks = entity.BookAuthors.Select(p => p.BookId).ToList();
-                var newBooks = model.Books.Except(existedBooks);
-                
-                foreach (var bookId in newBooks)
-                {
-                    _context.Set<BookAuthor>().Add(new BookAuthor { AuthorId = entity.Id, BookId = bookId });
-                }
-
-                _context.SaveChanges();
-
-                return true;
+                if (!model.Books.Contains(ba.BookId))
+                    _context.Set<BookAuthor>().Remove(ba);
             }
 
-            return false;
+            // add children (no need to update entries in join-table)
+            var existedBooks = entity.BookAuthors.Select(p => p.BookId).ToList();
+            var bookAuthors = model.Books.Except(existedBooks)
+                .Select(bookId => new BookAuthor { AuthorId = entity.Id, BookId = bookId });
+
+            await _context.Set<BookAuthor>().AddRangeAsync(bookAuthors);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
-        public IEnumerable<SelectOption> Options()
+        public async Task<IEnumerable<SelectOption>> Options()
         {
-            var model = _context.Set<Author>().Select(p => new SelectOption { Id = p.Id, Name = $"{p.FirstName} {p.LastName}" });
+            var model = await _context.Set<Author>()
+                .Select(p => new SelectOption { Id = p.Id, Name = $"{p.FirstName} {p.LastName}" })
+                .ToListAsync();
+
             return model;
         }
     }

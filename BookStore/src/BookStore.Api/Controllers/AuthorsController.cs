@@ -3,6 +3,7 @@ using BookStore.ViewModels;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BookStore.Api.Controllers
 {
@@ -18,46 +19,46 @@ namespace BookStore.Api.Controllers
 
         // GET: api/authors
         [HttpGet]
-        public IActionResult Get() => Ok(_service.Get());
+        public async Task<IActionResult> Get() => Ok(await _service.Get());
 
         // GET api/authors/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var model = _service.Get(id);
+            var model = await _service.Get(id);
             return model != null ? Ok(model) as IActionResult : NotFound();
         }
 
         // GET api/authors/options
         [HttpGet("options")]
-        public IActionResult Options()
+        public async Task<IActionResult> Options()
         {
-            var model = _service.Options();
+            var model = await _service.Options();
             return model.Any() ? Ok(model) as IActionResult : NotFound();
         }
 
         // POST api/authors
         [HttpPost]
-        public IActionResult Post([FromBody]AuthorViewModel model)
+        public async Task<IActionResult> Post([FromBody]AuthorViewModel model)
         {
             if (!ModelState.IsValid) return BadRequest(model);
-            
-            var result = _service.Create(model);    
+
+            var result = await _service.Create(model);
             return Created($"{Request.GetDisplayUrl()}/{result.Id}", result);
         }
 
         // PUT api/authors/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]AuthorViewModel model)
+        public async Task<IActionResult> Put(int id, [FromBody]AuthorViewModel model)
         {
             if (!ModelState.IsValid) return BadRequest(model);
-            
-            var result = _service.Update(model);
+
+            var result = await _service.Update(model);
             return result ? NoContent() as IActionResult : NotFound();
         }
 
         // DELETE api/authors/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id) => _service.Delete(id) ? NoContent() as IActionResult : NotFound();
+        public async Task<IActionResult> Delete(int id) => await _service.Delete(id) ? NoContent() as IActionResult : NotFound();
     }
 }

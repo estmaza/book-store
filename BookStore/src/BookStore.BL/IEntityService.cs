@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BookStore.BL
 {
-    public interface IEntityService<T> where T: class
+    public interface IEntityService<T> where T : class
     {
-        IEnumerable<T> Get();
-        T Get(int id);
-        T Create(T model);
-        bool Update(T model);
-        bool Delete(int id);
-        IEnumerable<SelectOption> Options();
+        Task<IEnumerable<T>> Get();
+        Task<T> Get(int id);
+        Task<T> Create(T model);
+        Task<bool> Update(T model);
+        Task<bool> Delete(int id);
+        Task<IEnumerable<SelectOption>> Options();
     }
 }
