@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore;
+﻿using BookStore.Api.Infrastructure;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace BookStore.Api
@@ -13,6 +14,7 @@ namespace BookStore.Api
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseKestrel(options => options.ConfigureEndpoints())
                 .Build();
     }
 }

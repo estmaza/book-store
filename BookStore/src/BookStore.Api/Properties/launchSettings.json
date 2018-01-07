@@ -19,10 +19,11 @@
     "BookStore.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/api/books",
+      "launchUrl": "https://localhost:44340/api/books",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "http://localhost:8080/"
     }
   }
 }
