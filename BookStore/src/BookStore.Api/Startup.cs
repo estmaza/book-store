@@ -41,7 +41,7 @@ namespace BookStore.Api
             var mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            services.AddDbContext<ApplicationContext>(options =>
+            services.AddDbContextPool<ApplicationContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("SqliteConnection")));
 
             // Add framework services.
