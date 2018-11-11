@@ -14,15 +14,15 @@ namespace BookStore.Data
 
             if (context.Books.Any())
             {
-                return; 
+                return;
             }
 
             var books = new List<Book>
             {
-                new Book {Name = "Pro ASP.NET Core MVC", Pages = 1018, Rating = 9, Date = "09/06/2016", Annotation = "Now in its 6th edition, the best selling book on MVC is now updated for ASP.NET Core MVC. It contains detailed explanations of the new Core MVC functionality which enables developers to produce leaner, cloud optimized and mobile-ready applications for the .NET platform." },
-                new Book {Name = "Pro Angular", Pages = 778, Rating = 8, Date = "08/03/2014", Annotation = "Get the most from Angular 2, the leading framework for building dynamic JavaScript applications." },
-                new Book {Name = "Pro ASP.NET MVC 5", Pages = 832, Rating = 7, Date = "07/03/2013", Annotation = "The ASP.NET MVC 5 Framework is the latest evolution of Microsoft’s ASP.NET web platform. It provides a high-productivity programming model that promotes cleaner code architecture, test-driven development, and powerful extensibility, combined with all the benefits of ASP.NET." },
-                new Book {Name = "Pro Asynchronous Programming with .NET", Pages = 352, Rating = 9, Date = "06/03/2012", Annotation = "Pro Asynchronous Programming with .NET teaches the essential skill of asynchronous programming in .NET. It answers critical questions in .NET application development, such as: how do I keep my program responding at all times to keep my users happy?" }
+                new Book {Name = "Pro ASP.NET Core MVC", Pages = 1018, Rating = 9, PublishDate = DateTime.Parse("09/06/2016"), Annotation = "Now in its 6th edition, the best selling book on MVC is now updated for ASP.NET Core MVC. It contains detailed explanations of the new Core MVC functionality which enables developers to produce leaner, cloud optimized and mobile-ready applications for the .NET platform." },
+                new Book {Name = "Pro Angular", Pages = 778, Rating = 8, PublishDate = DateTime.Parse("08/03/2014"), Annotation = "Get the most from Angular 2, the leading framework for building dynamic JavaScript applications." },
+                new Book {Name = "Pro ASP.NET MVC 5", Pages = 832, Rating = 7, PublishDate = DateTime.Parse("07/03/2013"), Annotation = "The ASP.NET MVC 5 Framework is the latest evolution of Microsoft’s ASP.NET web platform. It provides a high-productivity programming model that promotes cleaner code architecture, test-driven development, and powerful extensibility, combined with all the benefits of ASP.NET." },
+                new Book {Name = "Pro Asynchronous Programming with .NET", Pages = 352, Rating = 9, PublishDate = DateTime.Parse("06/03/2012"), Annotation = "Pro Asynchronous Programming with .NET teaches the essential skill of asynchronous programming in .NET. It answers critical questions in .NET application development, such as: how do I keep my program responding at all times to keep my users happy?" }
             };
 
             foreach (var b in books)

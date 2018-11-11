@@ -18,7 +18,7 @@ namespace BookStore.Data.Entity
         public string Name { get; set; }
 
         [Required]
-        public string Date { get; set; }
+        public DateTime PublishDate { get; set; }
 
         [Required]
         public int Rating { get; set; }
