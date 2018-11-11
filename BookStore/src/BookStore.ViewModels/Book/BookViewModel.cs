@@ -21,7 +21,7 @@ namespace BookStore.ViewModels
 
         [Required]
         [Display(Name = "Publish Date")]
-        public string Date { get; set; }
+        public DateTime PublishDate { get; set; }
 
         [Required]
         [Range(1, 10, ErrorMessage = "Number between 1 and 10")]

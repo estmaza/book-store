@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/BookStore/src/BookStore.Api/bin/Debug/netcoreapp2.0/BookStore.Api.dll",
+            "program": "${workspaceRoot}/BookStore/src/BookStore.Api/bin/Debug/netcoreapp2.1/BookStore.Api.dll",
             "args": [],
             "cwd": "${workspaceRoot}/BookStore/src/BookStore.Api",
             "stopAtEntry": false,
