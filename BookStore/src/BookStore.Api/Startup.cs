@@ -58,21 +58,6 @@ namespace BookStore.Api
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            #region RedirectToHttps
-
-            int? httpsPort = null;
-            var httpsSection = Configuration.GetSection("HttpServer:Endpoints:Https");
-            if (httpsSection.Exists())
-            {
-                var httpsEndpoint = new EndpointConfiguration();
-                httpsSection.Bind(httpsEndpoint);
-                httpsPort = httpsEndpoint.Port;
-            }
-            var statusCode = env.IsDevelopment() ? StatusCodes.Status302Found : StatusCodes.Status301MovedPermanently;
-            app.UseRewriter(new RewriteOptions().AddRedirectToHttps(statusCode, httpsPort));
-
-            #endregion
-
             app.UseResponseCompression();
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
