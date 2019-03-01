@@ -42,7 +42,11 @@ namespace BookStore.Api
             services.AddSingleton(mapper);
 
             services.AddDbContextPool<ApplicationContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("PostgreSqlConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("MsSqlConnection")));
+
+            // PostgreSql Connection
+            //services.AddDbContextPool<ApplicationContext>(options =>
+            //    options.UseNpgsql(Configuration.GetConnectionString("PostgreSqlConnection")));
 
             // Add framework services.
             services.AddMvcCore().AddJsonFormatters();

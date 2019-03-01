@@ -1,7 +1,0 @@
-FROM microsoft/aspnetcore:2.0.3 AS base
-WORKDIR /app
-EXPOSE 5000
-
-COPY BookStore.Api/bin/Debug/netcoreapp2.0/publish /app
-
-CMD ["dotnet", "BookStore.Api.dll"]`
