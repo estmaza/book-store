@@ -9,11 +9,11 @@ services:
     ports:
       - "5433:1433"
 
-  bookstore.api:
-    image: bookstore.api:${TAG:-latest}
+  catalog.api:
+    image: catalog.api:${TAG:-latest}
     build:
       context: .
-      dockerfile: BookStore/src/BookStore.Api/dockerfile
+      dockerfile: src/Services/Catalog/BookStore.Api/dockerfile
     ports:
       - "8000:80"
     depends_on:
